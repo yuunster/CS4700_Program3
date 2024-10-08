@@ -1,7 +1,10 @@
+using System.Collections;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    private GameManager gm;
+
     public SpriteRenderer smallMario;
     public SpriteRenderer bigMario;
     public SpriteRenderer flowerMario;
@@ -10,9 +13,17 @@ public class Player : MonoBehaviour
     public bool small => smallMario.enabled;
     public bool flower => flowerMario.enabled;
 
+    public bool invincible = false;
+
+    private void Awake() {
+        gm = FindObjectOfType<GameManager>();
+    }
     public void Hit() {
+        if (invincible) return;
+
         if (big || flower) {
             Shrink();
+            StartCoroutine(Invincible());
         } else {
             Death();
         }
@@ -43,6 +54,12 @@ public class Player : MonoBehaviour
         smallMario.enabled = false;
         bigMario.enabled = false;
 
-        GameManager.Instance.ResetLevel();
+        gm.ResetLevel();
     } 
+
+    private IEnumerator Invincible() {
+        invincible = true;
+        yield return new WaitForSeconds(1f);
+        invincible = false;
+    }
 }

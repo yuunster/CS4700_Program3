@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour {
     private Rigidbody2D rb;
+    private GameManager gm;
 
     public float speed = 3f;
     public Vector2 direction = Vector2.left;
@@ -12,6 +13,7 @@ public class Projectile : MonoBehaviour {
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
         velocity.y = -speed;
+        gm = FindObjectOfType<GameManager>();
     }
 
     private void OnBecameVisible() {
@@ -41,6 +43,7 @@ public class Projectile : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy")) {
+            gm.IncreaseScore(100);
             Destroy(collision.gameObject);
             Destroy(this.gameObject);
         } else if (collision.GetContact(0).normal.y < 0) {

@@ -110,19 +110,30 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy")) {
             if (transform.DotTest(collision.transform, Vector2.down)) {
                 velocity.y = jumpForce / 2f;
+                GameManager.Instance.IncreaseScore(100);
             }
-        } else if (collision.gameObject.layer != LayerMask.NameToLayer("Powerup") && velocity.y > 0f && rb.Raycast(Vector2.up)) {
-            velocity.y = 0f;
         } else if (collision.gameObject.layer == LayerMask.NameToLayer("Powerup")) {
             switch (collision.gameObject.tag) {
                 case "Mushroom":
                     player.Grow();
+                    GameManager.Instance.IncreaseScore(1000);
                     Destroy(collision.gameObject);
                     break;
                 case "Flower":
                     player.Flower();
+                    GameManager.Instance.IncreaseScore(1000);
                     Destroy(collision.gameObject);
                     break;
+            }
+        } else if (velocity.y > 0f && collision.GetContact(0).normal.y < 0) {
+            velocity.y = 0f;
+            if (collision.gameObject.tag == "ItemBlock") {
+                collision.gameObject.GetComponent<ItemBlock>().Spawn();
+            } else if (collision.gameObject.tag == "CoinBlock") {
+                collision.gameObject.GetComponent<CoinBlock>().Spawn();
+            } else if (collision.gameObject.tag == "BreakableBlock" && player.big || player.flower) {
+                Destroy(collision.gameObject);
+                GameManager.Instance.IncreaseScore(100);
             }
         }
 
