@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Level 1");
     }
 
-    private void ResetLevel() {
+    public void ResetLevel() {
         lives--;
 
         if (lives > 0) {

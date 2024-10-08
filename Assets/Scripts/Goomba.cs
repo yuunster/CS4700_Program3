@@ -3,9 +3,12 @@ using UnityEngine;
 public class Goomba : MonoBehaviour
 {
     private void OnCollisionEnter2D(Collision2D collision) {
+        Player player = collision.gameObject.GetComponent<Player>();
         if (collision.gameObject.CompareTag("Player")) {
             if (collision.transform.DotTest(transform, Vector2.down)) {
                 Flatten();
+            } else {
+                player.Hit();
             }
         }
     }
