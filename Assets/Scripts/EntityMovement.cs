@@ -53,7 +53,7 @@ public class EntityMovement : MonoBehaviour {
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.GetContact(0).normal.x != 0) {
+        if (Mathf.Abs(collision.GetContact(0).normal.x) > Mathf.Abs(collision.GetContact(0).normal.y)) {
             direction = -direction;
         }
     }

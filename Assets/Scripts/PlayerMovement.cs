@@ -6,7 +6,6 @@ public class PlayerMovement : MonoBehaviour
     private Camera m_camera;
     private Rigidbody2D rb;
     Player player;
-    public GameObject projectile;
 
     private Vector2 velocity;
     private float inputAxis;
@@ -86,7 +85,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Fire1")) {
             if (ammo > 0) {
                 ammo--;
-                GameObject instance = Instantiate(projectile, rb.position + new Vector2(transform.localScale.x * 0.5f, 0), Quaternion.identity);
+                GameObject instance = Instantiate(GameAssets.i.projectile, rb.position + new Vector2(transform.localScale.x * 0.5f, 0), Quaternion.identity);
                 instance.GetComponent<Projectile>().direction = transform.localScale;
                 StartCoroutine(Reload());
             }
@@ -111,17 +110,20 @@ public class PlayerMovement : MonoBehaviour
             if (transform.DotTest(collision.transform, Vector2.down)) {
                 velocity.y = jumpForce / 2f;
                 GameManager.Instance.IncreaseScore(100);
+                ScorePopup.Create(100, collision.transform.position);
             }
         } else if (collision.gameObject.layer == LayerMask.NameToLayer("Powerup")) {
             switch (collision.gameObject.tag) {
                 case "Mushroom":
                     player.Grow();
                     GameManager.Instance.IncreaseScore(1000);
+                    ScorePopup.Create(1000, collision.transform.position);
                     Destroy(collision.gameObject);
                     break;
                 case "Flower":
                     player.Flower();
                     GameManager.Instance.IncreaseScore(1000);
+                    ScorePopup.Create(1000, collision.transform.position);
                     Destroy(collision.gameObject);
                     break;
             }

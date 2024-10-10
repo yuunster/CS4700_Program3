@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
     }
 
     public void Flower() {
-        if (big) {
+        if (big || flower) {
             bigMario.enabled = false;
             smallMario.enabled = false;
             flowerMario.enabled = true;

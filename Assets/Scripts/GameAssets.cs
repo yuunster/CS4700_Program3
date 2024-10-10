@@ -11,4 +11,6 @@ public class GameAssets : MonoBehaviour
     }
 
     public GameObject scorePopup;
+    public GameObject coin;
+    public GameObject projectile;
 }

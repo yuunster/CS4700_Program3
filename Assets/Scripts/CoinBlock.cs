@@ -3,7 +3,6 @@ using UnityEngine;
 public class CoinBlock : MonoBehaviour
 {
     private GameManager gm;
-    public GameObject coin;
 
     private bool active = true;
 
@@ -15,7 +14,7 @@ public class CoinBlock : MonoBehaviour
             active = false;
             gm.IncreaseCoins(1);
             gm.IncreaseScore(200);
-            GameObject instance = Instantiate(coin, transform.position, Quaternion.identity);
+            GameObject instance = Instantiate(GameAssets.i.coin, transform.position, Quaternion.identity);
         }
     }
 }

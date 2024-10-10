@@ -3,7 +3,13 @@ guid: 6353189b6fb891c479973af6717a4114
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - scoreText: {instanceID: 0}
+  - coinsText: {instanceID: 0}
+  - timeLeftText: {instanceID: 0}
+  - livesText: {instanceID: 0}
+  - scorePopup: {fileID: 1565995470045843757, guid: f7d4ead5380618a43a68625d72280a4c,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

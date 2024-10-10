@@ -46,3 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scorePopup: {fileID: 6270856521015644579, guid: f7d4ead5380618a43a68625d72280a4c,
     type: 3}
+  coin: {fileID: 1358371030945885329, guid: 6b3986fa95c8f494aabfe5b038df9599, type: 3}
+  projectile: {fileID: 32297533407642788, guid: 3282055698ee8884c9118cb9d0f55f59,
+    type: 3}

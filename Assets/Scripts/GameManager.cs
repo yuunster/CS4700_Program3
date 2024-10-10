@@ -11,10 +11,10 @@ public class GameManager : MonoBehaviour
     public int coins { get; private set; }
     public int timeLeft { get; private set; }
     public int lives { get; private set; }
-    public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI coinsText;
-    public TextMeshProUGUI timeLeftText;
-    public TextMeshProUGUI livesText;
+    private TextMeshProUGUI scoreText;
+    private TextMeshProUGUI coinsText;
+    private TextMeshProUGUI timeLeftText;
+    private TextMeshProUGUI livesText;
 
     private void Awake() {
         if (Instance == null) {
